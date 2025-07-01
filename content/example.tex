@@ -16,7 +16,7 @@
 \end{frame}
 
 
-\begin{frame}[split, fragile]{Split Frame}
+\begin{frame}[split]{Split Frame}
   \framesubtitle{Code Example}
   \begin{columns}[t]
     \begin{column}{0.58\textwidth}
@@ -33,14 +33,27 @@
     \end{column}
     \hfill
     \begin{column}{0.38\textwidth}
-
+        \color{cwhite}
+        \inputminted{latex}{content/example_split_frame.tex}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}[split=0.4]{Split Frame}
-
+  \framesubtitle{Wider Right Side}
+  \begin{columns}[t]
+    \begin{column}{0.38\textwidth}
+      The split position can also be changed by passing a value to split, e.\,g.,
+      \texttt{[split=0.4]}.
+    \end{column}
+    \hfill
+    \begin{column}{0.58\textwidth}
+      \color{cwhite}
+      \inputminted{latex}{content/example_split_frame_var.tex}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}[full,fragile]{Dark Frame}
+\begin{frame}[full]{Dark Frame}
+
 \end{frame}
