@@ -1,0 +1,29 @@
+\begin{frame}{Note}
+  About this theme:
+  \begin{itemize}
+    \item To install this theme, at least \texttt{beamerthemecode.sty} has to be moved to a directory that is searchable by \LaTeX.
+      This can be one of
+      \begin{itemize}
+        \item \texttt{TEXMFHOME/tex/latex/beamerthemecode}. \texttt{TEXMFHOME} can be accessed via \texttt{kpsewhich --var-value TEXMFHOME};
+          usually this returns \texttt{\$HOME/texmf}.
+        \item The same directory you compile your document in.
+        \item Any directory which is included in \texttt{TEXINPUTS}.
+      \end{itemize}
+  \end{itemize}
+
+  You can install the theme with a one-liner:\\
+  \texttt{\footnotesize\$ cd `kpsewhich --var-value TEXMFHOME` \&\& git clone https://github.com/aknierim/beamerthemecode}
+\end{frame}
+
+
+\begin{frame}[split]{Split Frame}
+  \framesubtitle{Second Title}
+\end{frame}
+
+\begin{frame}[split=0.4]{Split Frame}
+   
+\end{frame}
+
+\begin{frame}[full]{Dark Frame}
+   
+\end{frame}
