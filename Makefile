@@ -1,4 +1,4 @@
-TeXInputs = TEXINPUTS=$(PWD):
+TeXInputs = TEXINPUTS=$(PWD)/headers:
 
 
 all: build/presentation.pdf
