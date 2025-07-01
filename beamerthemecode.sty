@@ -245,6 +245,7 @@
 \define@key{beamerframe}{full}[true]{%
   \setbeamertemplate{background canvas}[split][0]%
   \setbeamertemplate{frametitle}[default][center]%
+
   \setbeamertemplate{footline}
   {%
     \ifnum\insertframenumber=1%
@@ -286,6 +287,8 @@
 \makeatother
 
 \defbeamertemplate{background canvas}{split}[1][0.6]{%
+  \color{cwhite}\vrule width\paperwidth height\paperheight%
+
   \pgfmathsetmacro{\split}{(1-#1)*\paperwidth}
   \begin{tikzpicture}[remember picture, overlay]
     \fill [cblack] (current page.south east) rectangle ([xshift=-\split pt]current page.north east);
