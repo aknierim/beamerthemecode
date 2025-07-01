@@ -40,9 +40,14 @@
 \usepackage{varwidth}
 \usepackage{setspace}
 
-
-\usepackage{minted}
-\usemintedstyle{material}
+\usepackage{fancyvrb}
+\usepackage[outputdir=build]{minted2}
+\setminted{
+  autogobble,
+  breaklines,
+  stripnl=true,
+}
+\usemintedstyle{code}
 
 % bibliography
 \usepackage[
