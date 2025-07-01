@@ -16,14 +16,31 @@
 \end{frame}
 
 
-\begin{frame}[split]{Split Frame}
-  \framesubtitle{Second Title}
+\begin{frame}[split, fragile]{Split Frame}
+  \framesubtitle{Code Example}
+  \begin{columns}[t]
+    \begin{column}{0.58\textwidth}
+      This theme allows you to create visually split slides.
+      \begin{itemize}
+        \setlength{\itemsep}{1em}
+        \item Use the \texttt{split} key with the \texttt{frame} environment
+          to create the split slide
+        \item Set an optional second title using the
+          \mintinline{latex}+\framesubtitle+ command
+        \item The dark half of the slide is intended mainly for code
+          examples together with the provided pygments style
+      \end{itemize}
+    \end{column}
+    \hfill
+    \begin{column}{0.38\textwidth}
+
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[split=0.4]{Split Frame}
-   
+
 \end{frame}
 
-\begin{frame}[full]{Dark Frame}
-   
+\begin{frame}[full,fragile]{Dark Frame}
 \end{frame}
