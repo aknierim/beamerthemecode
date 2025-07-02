@@ -34,3 +34,6 @@ You can install the theme with the following command:
 ```
 $ cd `kpsewhich --var-value TEXMFHOME` && git clone https://github.com/aknierim/beamerthemecode
 ```
+
+## Acknowledgements
+This theme was inspired by the theme of a talk given by [@StFroese](https://github.com/StFroese) at the ErUM-Data-Hub PYOPP Workshop 2025.
