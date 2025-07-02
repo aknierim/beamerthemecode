@@ -32,5 +32,5 @@ a directory that is searchable by LaTeX. This can be one of
 
 You can install the theme with the following command:
 ```
-$ cd `kpsewhich --var-value TEXMFHOME` &&& git clone https://github.com/aknierim/beamerthemecode
+$ cd `kpsewhich --var-value TEXMFHOME` && git clone https://github.com/aknierim/beamerthemecode
 ```
