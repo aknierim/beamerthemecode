@@ -36,4 +36,4 @@ $ cd `kpsewhich --var-value TEXMFHOME` && git clone https://github.com/aknierim/
 ```
 
 ## Acknowledgements
-This theme was inspired by the theme of a talk given by [@StFroese](https://github.com/StFroese) at the ErUM-Data-Hub PYOPP Workshop 2025.
+This theme is a LaTeX beamer adaption for a theme of a talk given by [@StFroese](https://github.com/StFroese) at the ErUM-Data-Hub PYOPP Workshop 2025.
