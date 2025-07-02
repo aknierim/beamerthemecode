@@ -1,6 +1,6 @@
 # beamerthemecode
 
-A small, minimalistic beamer theme intended for technical presentations
+A small, minimalistic LaTeX beamer theme intended for technical presentations
 where code examples are central, e.g.
 
 - Programming talks or tutorials
