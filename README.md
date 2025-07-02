@@ -14,7 +14,7 @@ This style has to be installed in an python environment of
 your choice prior to building the slides. A [mamba](https://github.com/mamba-org/mamba)
 environment is provided with the file `environment.yml`.
 If you don't want to use the pygments style, change
-the style in `content/headers.tex` or remove the `minted2`
+the style in `headers/header.tex` or remove the `minted2`
 package entirely.
 
 ## Installation
