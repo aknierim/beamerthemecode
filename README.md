@@ -14,7 +14,7 @@ This style has to be installed in an python environment of
 your choice prior to building the slides. A [mamba](https://github.com/mamba-org/mamba)
 environment is provided with the file `environment.yml`.
 If you don't want to use the pygments style, change
-the style in `content/headers.tex` or remove the `minted2`
+the style in `headers/header.tex` or remove the `minted2`
 package entirely.
 
 ## Installation
@@ -32,5 +32,8 @@ a directory that is searchable by LaTeX. This can be one of
 
 You can install the theme with the following command:
 ```
-$ cd `kpsewhich --var-value TEXMFHOME` &&& git clone https://github.com/aknierim/beamerthemecode
+$ cd `kpsewhich --var-value TEXMFHOME` && git clone https://github.com/aknierim/beamerthemecode
 ```
+
+## Acknowledgements
+This theme is a LaTeX beamer adaption for a theme of a talk given by [@StFroese](https://github.com/StFroese) at the ErUM-Data-Hub PYOPP Workshop 2025.
