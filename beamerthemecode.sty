@@ -3,9 +3,11 @@
 %Requirements
 \RequirePackage{xcolor}
 \RequirePackage{xkeyval}
+\RequirePackage{xparse}
 \RequirePackage{ifluatex}
 \RequirePackage{ifxetex}
 \RequirePackage{calc}
+\RequirePackage{fontspec}
 \RequirePackage{tikz}
 \usetikzlibrary{calc,patterns,quotes,tikzmark,angles,decorations.pathreplacing,fadings}
 
@@ -39,7 +41,6 @@
   BoldFont=FiraSans Medium,
 ]
 \setmonofont{Fira Code}[Scale=MatchLowercase]
-\setmathfont{Fira Math}[Scale=MatchLowercase]
 
 \setbeamertemplate{navigation symbols}{}
 
@@ -176,125 +177,6 @@
   \fi%
 }
 
-
-\makeatletter
-\defbeamertemplate{frametitle}{split}[1][0.6]{%
-  \begin{tikzpicture}[overlay, remember picture]
-    % define macros (in pt)
-    \pgfmathsetmacro{\lwidth}{#1 * \paperwidth}
-    \pgfmathsetmacro{\rwidth}{(1 - #1) * \paperwidth}
-    \pgfmathsetmacro{\lcenter}{\lwidth / 2}
-    \pgfmathsetmacro{\rcenter}{\lwidth + \rwidth / 2}
-    \node [cpink, anchor=center] at ([xshift=\lcenter pt, yshift=-16.8pt]current page.north west){
-      \ifx\beamer@frametitle\empty%
-      \else%
-        \usebeamerfont{frametitle}\beamer@frametitle%
-      \fi%
-    };
-    \node [cpink, anchor=center] at ([xshift=\rcenter pt, yshift=-16.8pt]current page.north west){
-      \ifx\insertframesubtitle\empty%
-      \else%
-        \usebeamerfont{frametitle}\insertframesubtitle%
-      \fi%
-    };
-  \end{tikzpicture}
-}
-
-\define@key{beamerframe}{split}[0.6]{%
-  \setbeamertemplate{background canvas}[split][#1]%
-  \setbeamertemplate{frametitle}[split][#1]%
-  \setbeamertemplate{footline}
-  {%
-    \ifnum\insertframenumber=1%
-    \else%
-      \leavevmode
-      \begin{beamercolorbox}[
-        wd=\footerleftwidth,
-        ht=4ex,
-        dp=10pt,
-        leftskip=\beamer@leftmargin,
-      ]{author in head/foot}%
-        {\usebeamerfont{author in head/foot}\insertshortauthor}%
-        \ifx\beamer@shortdate\empty\else%
-        ~|~{\usebeamerfont{date in head/foot}\insertshortdate}%
-        \fi%
-      \end{beamercolorbox}%
-      \begin{beamercolorbox}[
-        wd=\footerrightwidth,
-        ht=4ex,
-        dp=10pt,
-        rightskip=\beamer@rightmargin,
-      ]{frame}%
-        \raggedleft%
-        \usebeamerfont{framenumber}\textcolor{cwhite}{\insertframenumber}%
-        \if@showtotalframes%
-        ~/~\inserttotalframenumber%
-        \fi%
-      \end{beamercolorbox}%
-      \vfill
-      \usebeamercolor{separation line}%
-      \if@progressbar%
-        \progressb@progressb%
-      \else%
-        \rule{\paperwidth}{0.4pt}%
-      \fi%
-    \fi%
-  }
-}
-
-\define@key{beamerframe}{full}[true]{%
-  \setbeamertemplate{background canvas}[split][0]%
-  \setbeamertemplate{frametitle}[default][center]%
-
-  \setbeamertemplate{footline}
-  {%
-    \ifnum\insertframenumber=1%
-    \else%
-      \leavevmode
-      \begin{beamercolorbox}[
-        wd=\footerleftwidth,
-        ht=4ex,
-        dp=10pt,
-        leftskip=\beamer@leftmargin,
-      ]{author in head/foot}%
-        {\usebeamerfont{author in head/foot}\textcolor{cwhite}{\insertshortauthor}}%
-        \ifx\beamer@shortdate\empty\else%
-        ~|~{\usebeamerfont{date in head/foot}\textcolor{cwhite}{\insertshortdate}}%
-        \fi%
-      \end{beamercolorbox}%
-      \begin{beamercolorbox}[
-        wd=\footerrightwidth,
-        ht=4ex,
-        dp=10pt,
-        rightskip=\beamer@rightmargin,
-      ]{frame}%
-        \raggedleft%
-        \usebeamerfont{framenumber}\textcolor{cwhite}{\insertframenumber}%
-        \if@showtotalframes%
-        ~/~\inserttotalframenumber%
-        \fi%
-      \end{beamercolorbox}%
-      \vfill
-      \usebeamercolor{separation line}%
-      \if@progressbar%
-        \progressb@progressb%
-      \else%
-        \rule{\paperwidth}{0.4pt}%
-      \fi%
-    \fi%
-  }
-}
-\makeatother
-
-\defbeamertemplate{background canvas}{split}[1][0.6]{%
-  \color{cwhite}\vrule width\paperwidth height\paperheight%
-
-  \pgfmathsetmacro{\split}{(1-#1)*\paperwidth}
-  \begin{tikzpicture}[remember picture, overlay]
-    \fill [cblack] (current page.south east) rectangle ([xshift=-\split pt]current page.north east);
-  \end{tikzpicture}
-}
-
 % DEFAULT FRAMETITLE
 \setbeamertemplate{frametitle}[default][center]
 
@@ -370,4 +252,57 @@
 \setbeamercolor{bibliography entry author}{fg=cpink}
 \setbeamercolor{bibliography entry title}{fg=cpink!80!cwhite}
 \setbeamercolor{bibliography entry note}{fg=cpink}
+
+
+
+\NewDocumentEnvironment {darkframe} { O{} g }
+{%
+  \setbeamercolor{background canvas}{bg=cblack}
+  \setbeamercolor{normal text}{fg=cwhite, bg=}
+  \setbeamercolor{palette primary}{fg=cwhite, bg=}
+  \setbeamercolor{block body}{fg=cwhite, bg=}
+  \setbeamercolor{section in toc}{fg=cwhite, bg=}
+
+  \usebeamercolor[fg]{normal text}
+  \IfValueTF{#2}{
+    \begin{frame}[fragile, environment=darkframe, #1]{#2}
+  }{
+    \begin{frame}[fragile, environment=darkframe, #1]
+  }
+}{%
+    \end{frame}
+}
+
+\NewDocumentEnvironment {splitframe} { O{} g g G{0.6} }
+{%
+  \begin{frame}[environment=splitframe, #1]
+    \visualsplit{#4}
+    \dualframetitle{#4}{#2}{#3}
+  }{
+  \end{frame}
+}
+
+\NewDocumentCommand \dualframetitle { m g g } {%
+  \begin{tikzpicture}[overlay, remember picture]
+    % define macros (in pt)
+    \pgfmathsetmacro{\lwidth}{#1 * \paperwidth}
+    \pgfmathsetmacro{\rwidth}{(1 - #1) * \paperwidth}
+    \pgfmathsetmacro{\lcenter}{\lwidth / 2}
+    \pgfmathsetmacro{\rcenter}{\lwidth + \rwidth / 2}
+    \node [cpink, anchor=center] at ([xshift=\lcenter pt, yshift=-16.8pt]current page.north west){
+      \IfNoValueTF{#2}{}{\usebeamerfont{frametitle}#2}%
+    };
+    \node [cpink, anchor=center] at ([xshift=\rcenter pt, yshift=-16.8pt]current page.north west){
+      \IfNoValueTF{#3}{}{\usebeamerfont{frametitle}#3}%
+    };
+  \end{tikzpicture}
+}
+\NewDocumentCommand \visualsplit { m }{%
+  \pgfmathsetmacro{\split}{(1-#1)*\paperwidth}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill [cwhite] (current page.south east) rectangle (current page.north east);
+    \fill [cblack] (current page.south east) rectangle ([xshift=-\split pt]current page.north east);
+  \end{tikzpicture}
+}
+
 \mode<all>
